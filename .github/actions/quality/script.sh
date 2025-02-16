@@ -12,6 +12,7 @@ export SONAR_HOST_URL=$SONARQUBE_URL
 
 echo "Getting pysonar-scanner"
 pip install pysonar-scanner
+export PATH=~/.local/bin:$PATH
 
 echo "Scanning"
 pysonar-scanner -Dsonar.token=$SONARQUBE_TOKEN -DprojectKey=$PROJECT_KEY
