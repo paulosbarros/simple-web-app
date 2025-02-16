@@ -14,10 +14,8 @@ jobs:
     steps:
       - name: Set script permissions
         run: chmod +x ./.github/actions/quality/script.sh
-        shell: bash
       - name: Run script
         run: bash -e ./.github/actions/quality/script.sh
-        shell: bash
         with:
           SONARQUBE_URL: ${{ inputs.SONARQUBE_URL }}
           SONAR_TOKEN: ${{ inputs.SONAR_TOKEN }}
