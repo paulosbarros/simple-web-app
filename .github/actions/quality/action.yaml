@@ -1,16 +1,22 @@
 name: Quality Script Action
 description: "An action to execute a shell script"
 
-inputs:
-  SONARQUBE_URL:
-    required: true
-  SONAR_TOKEN:
-    required: true
-  PROJECT_KEY:
-    required: true
+on:
+  workflow_call:
+    inputs:
+      SONARQUBE_URL:
+        required: true
+      SONAR_TOKEN:
+        required: true
+      PROJECT_KEY:
+        required: true
 
 runs:
   using: "composite"
+  with:
+    SONARQUBE_URL: ${{ github.event.inputs.SONARQUBE_URL }}
+    SONAR_TOKEN: ${{ github.event.inputs.SONAR_TOKEN }}
+    PROJECT_KEY: ${{ github.event.inputs.PROJECT_KEY }}
   steps:
     - name: Set script permissions
       run: chmod +x ./.github/actions/quality/script.sh
