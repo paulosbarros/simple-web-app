@@ -11,16 +11,17 @@ on:
       PROJECT_KEY:
         required: true
 
-runs:
-  using: "composite"
-  with:
-    SONARQUBE_URL: ${{ github.event.inputs.SONARQUBE_URL }}
-    SONAR_TOKEN: ${{ github.event.inputs.SONAR_TOKEN }}
-    PROJECT_KEY: ${{ github.event.inputs.PROJECT_KEY }}
-  steps:
-    - name: Set script permissions
-      run: chmod +x ./.github/actions/quality/script.sh
-      shell: bash
-    - name: Run script
-      run: bash -e ./.github/actions/quality/script.sh
-      shell: bash
+jobs:
+  pysonar-scanner:
+    using: "composite"
+    with:
+      SONARQUBE_URL: ${{ github.event.inputs.SONARQUBE_URL }}
+      SONAR_TOKEN: ${{ github.event.inputs.SONAR_TOKEN }}
+      PROJECT_KEY: ${{ github.event.inputs.PROJECT_KEY }}
+    steps:
+      - name: Set script permissions
+        run: chmod +x ./.github/actions/quality/script.sh
+        shell: bash
+      - name: Run script
+        run: bash -e ./.github/actions/quality/script.sh
+        shell: bash
