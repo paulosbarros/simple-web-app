@@ -1,0 +1,27 @@
+name: Simple Web Application Workflow
+on:
+  push:
+    branches:
+      - main
+jobs:
+  pre-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Get dependencies
+        uses: ./.github/actions/install
+      - name: Build
+        uses: ./.github/actions/build
+      - name: Quality Assurance
+        uses: ./.github/actions/quality
+      - name: Publish artifacts
+        uses: ./.github/actions/publish
+  deploy:
+    runs-on: self-hosted
+    needs: pre-deploy
+    steps:
+      - name: Validate
+        uses: ./.github/actions/validate
+      - name: Deploy
+        uses: ./.github/actions/deploy

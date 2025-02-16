@@ -1,0 +1,11 @@
+name: Validate Script Action
+description: "An action to execute a shell script"
+runs:
+  using: "composite"
+  steps:
+    - name: Set script permissions
+      run: chmod +x ./script.sh
+      shell: bash
+    - name: Run script
+      run: bash -e ./script.sh
+      shell: bash
