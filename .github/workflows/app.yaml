@@ -2,7 +2,7 @@ name: Simple Web Application Workflow
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   pre-deploy:
     runs-on: self-hosted
