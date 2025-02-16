@@ -1,5 +1,14 @@
 name: Quality Script Action
 description: "An action to execute a shell script"
+
+inputs:
+  SONARQUBE_URL:
+    required: true
+  SONAR_TOKEN:
+    required: true
+  PROJECT_KEY:
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -8,8 +17,4 @@ runs:
       shell: bash
     - name: Run script
       run: bash -e ./.github/actions/quality/script.sh
-      with:
-        SONARQUBE_URL: ${{ env.SONARQUBE_URL }}
-        SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-        PROJECT_KEY: ${{ github.repository }}
       shell: bash
