@@ -8,4 +8,8 @@ runs:
       shell: bash
     - name: Run script
       run: bash -e ./.github/actions/quality/script.sh
+      with:
+        SONARQUBE_URL: ${{ env.SONARQUBE_URL }}
+        SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+        PROJECT_KEY: ${{ github.repository }}
       shell: bash
