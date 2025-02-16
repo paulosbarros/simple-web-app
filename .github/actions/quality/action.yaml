@@ -10,7 +10,6 @@ on:
 
 jobs:
   pysonar-scanner:
-    runs-on: self-hosted
     steps:
       - name: Set script permissions
         run: chmod +x ./.github/actions/quality/script.sh
