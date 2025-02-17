@@ -5,6 +5,7 @@ on:
     - master
 jobs:
   pre-deploy:
+    permissions: write-all
     runs-on: self-hosted
     environment: Develop
     steps:
