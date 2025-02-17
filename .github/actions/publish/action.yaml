@@ -5,15 +5,15 @@ inputs:
     required: true
   DOCKER_PASSWORD:
     required: true
+  GITHUB_USER:
+    required: true
+  GITHUB_PASSWORD:
+    required: true
+  GITHUB_REPOSITORY:
+    required: true
 
 runs:
   using: "composite"
-  name: Push Docker image to multiple registries
-  permissions:
-    packages: write
-    contents: read
-    attestations: write
-    id-token: write
   steps:
     - name: Check out the repo
       uses: actions/checkout@v4
@@ -28,8 +28,8 @@ runs:
       uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
       with:
         registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        username: ${{ inputs.GITHUB_USER }}
+        password: ${{ inputs.GITHUB_PASSWORD }}
 
     - name: Extract metadata (tags, labels) for Docker
       id: meta
@@ -37,7 +37,7 @@ runs:
       with:
         images: |
           paulosb/simple-web-app
-          ghcr.io/${{ github.repository }}
+          ghcr.io/${{ inputs.GITHUB_REPOSITORY }}
 
     - name: Build and push Docker images
       id: push
@@ -51,6 +51,6 @@ runs:
     - name: Generate artifact attestation
       uses: actions/attest-build-provenance@v2
       with:
-        subject-name: ghcr.io/${{ github.repository }}
+        subject-name: ghcr.io/${{ inputs.GITHUB_REPOSITORY }}
         subject-digest: ${{ steps.push.outputs.digest }}
         push-to-registry: true
