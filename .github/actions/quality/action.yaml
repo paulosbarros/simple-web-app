@@ -3,10 +3,13 @@ on:
     inputs:
       SONARQUBE_URL:
         required: true
+        type: string
       SONAR_TOKEN:
         required: true
+        type: string
       PROJECT_KEY:
         required: true
+        type: string
 
 jobs:
   pysonar-scanner:
@@ -15,7 +18,12 @@ jobs:
         run: chmod +x ./.github/actions/quality/script.sh
       - name: Run script
         run: bash -e ./.github/actions/quality/script.sh
-        with:
-          SONARQUBE_URL: ${{ inputs.SONARQUBE_URL }}
-          SONAR_TOKEN: ${{ inputs.SONAR_TOKEN }}
-          PROJECT_KEY: ${{ inputs.PROJECT_KEY }}
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+        #with:
+        #  SONARQUBE_URL: ${{ inputs.SONARQUBE_URL }}
+        #  SONAR_TOKEN: ${{ inputs.SONAR_TOKEN }}
+        #  PROJECT_KEY: ${{ inputs.PROJECT_KEY }}
