@@ -39,7 +39,7 @@ runs:
       with:
         images: |
           paulosb/simple-web-app
-          ghcr.io/${{ inputs.GITHUB_REPOSITORY }}
+          ghcr.io/${{ inputs.GITHUB_USER }}/${{ inputs.GITHUB_REPOSITORY }}
         tags: |
           type=sha
           ${{ inputs.COMMIT_SHA }}
@@ -56,6 +56,6 @@ runs:
     - name: Generate artifact attestation
       uses: actions/attest-build-provenance@v2
       with:
-        subject-name: ghcr.io/${{ inputs.GITHUB_REPOSITORY }}
+        subject-name: ghcr.io/${{ inputs.GITHUB_USER }}/${{ inputs.GITHUB_REPOSITORY }}
         subject-digest: ${{ steps.push.outputs.digest }}
         push-to-registry: true
