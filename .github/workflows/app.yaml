@@ -2,31 +2,34 @@ name: Simple Web Application Workflow
 on:
   push:
     branches:
-      - master
+    - master
 jobs:
   pre-deploy:
     runs-on: self-hosted
     environment: Develop
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Get dependencies
-        uses: ./.github/actions/install
-      - name: Build
-        uses: ./.github/actions/build
-      - name: Quality Assurance
-        uses: ./.github/actions/quality
-        with:
-          SONARQUBE_URL: ${{ vars.SONARQUBE_URL }}
-          SONARQUBE_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-          PROJECT_KEY: ${{ github.event.repository.name }}
-      - name: Publish artifacts
-        uses: ./.github/actions/publish
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Get dependencies
+      uses: ./.github/actions/install
+    - name: Build
+      uses: ./.github/actions/build
+      with:
+        APP_NAME: ${{ github.event.repository.name }}
+        COMMIT_SHA: ${{ github.sha }}
+    - name: Quality Assurance
+      uses: ./.github/actions/quality
+      with:
+        SONARQUBE_URL: ${{ vars.SONARQUBE_URL }}
+        SONARQUBE_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+        PROJECT_KEY: ${{ github.event.repository.name }}
+    - name: Publish artifacts
+      uses: ./.github/actions/publish
   deploy:
     runs-on: self-hosted
     needs: pre-deploy
     steps:
-      - name: Validate
-        uses: ./.github/actions/validate
-      - name: Deploy
-        uses: ./.github/actions/deploy
+    - name: Validate
+      uses: ./.github/actions/validate
+    - name: Deploy
+      uses: ./.github/actions/deploy

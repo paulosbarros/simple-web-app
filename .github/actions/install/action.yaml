@@ -3,9 +3,6 @@ description: "An action to execute a shell script"
 runs:
   using: "composite"
   steps:
-    - name: Set script permissions
-      run: chmod +x ./.github/actions/install/script.sh
-      shell: bash
-    - name: Run script
-      run: bash -e ./.github/actions/install/script.sh
-      shell: bash
+  - name: Run script
+    run: bash -e ./.github/actions/install/script.sh
+    shell: bash

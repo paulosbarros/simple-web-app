@@ -1,3 +1,6 @@
+name: Quality Assurance Action
+description: "An action to execute the sonar scanner"
+
 inputs:
   SONARQUBE_URL:
     required: true
@@ -9,10 +12,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Run script
-      run: bash -e ./.github/actions/quality/script.sh
-      shell: bash
-      env:
-        SONARQUBE_URL: ${{ inputs.SONARQUBE_URL }}
-        SONARQUBE_TOKEN: ${{ inputs.SONARQUBE_TOKEN }}
-        PROJECT_KEY: ${{ inputs.PROJECT_KEY }}
+  - name: Run script
+    run: bash -e ./.github/actions/quality/script.sh
+    shell: bash
+    env:
+      SONARQUBE_URL: ${{ inputs.SONARQUBE_URL }}
+      SONARQUBE_TOKEN: ${{ inputs.SONARQUBE_TOKEN }}
+      PROJECT_KEY: ${{ inputs.PROJECT_KEY }}
