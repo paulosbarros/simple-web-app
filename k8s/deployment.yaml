@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simple-web-app
+  name: ${{ APP_NAME }}
+  namespace: ${{ APP_NAME }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: simple-web-app
+      app: ${{ APP_NAME }}
   template:
     metadata:
       labels:
-        app: simple-web-app
+        app: ${{ APP_NAME }}
     spec:
       containers:
-      - name: simple-web-app
-        image: paulosb/simple-web-app:${{ IMAGE_VERSION }}
+      - name: ${{ APP_NAME }}
+        image: paulosb/${{ APP_NAME }}:${{ IMAGE_VERSION }}
         ports:
-        - containerPort: 8080
+        - containerPort: 5000

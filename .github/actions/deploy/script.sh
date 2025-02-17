@@ -5,6 +5,7 @@
 #REQUIRES:
 #   COMMIT_SHA
 export IMAGE_VERSION=$COMMIT_SHA
+export APP_NAME=$GITHUB_REPOSITORY
 
 echo "Deploying"
 
