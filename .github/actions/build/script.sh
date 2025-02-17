@@ -7,4 +7,4 @@
 #   COMMIT_SHA
 
 echo "Building"
-Docker build . -t $APP_NAME:$COMMIT_SHA
+docker build . -t $APP_NAME:$COMMIT_SHA
