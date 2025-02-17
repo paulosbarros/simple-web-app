@@ -38,4 +38,4 @@ jobs:
       uses: ./.github/actions/deploy
       with:
         COMMIT_SHA: ${{ github.sha }}
-        GITHUB_REPOSITORY: ${{ github.event.repository.name }}
+        APP_NAME: ${{ github.event.repository.name }}
