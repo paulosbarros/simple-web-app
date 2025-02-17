@@ -42,7 +42,7 @@ runs:
           ghcr.io/${{ inputs.GITHUB_REPOSITORY }}
         tags: |
           type=sha
-          tag-custom: ${{ inputs.COMMIT_SHA }}
+          ${{ inputs.COMMIT_SHA }}
 
     - name: Build and push Docker images
       id: push
