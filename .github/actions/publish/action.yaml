@@ -38,6 +38,8 @@ runs:
         images: |
           paulosb/simple-web-app
           ghcr.io/${{ inputs.GITHUB_REPOSITORY }}
+        tags: |
+          type=sha
 
     - name: Build and push Docker images
       id: push
