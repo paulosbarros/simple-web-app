@@ -1,8 +1,15 @@
 name: Deploy Script Action
 description: "An action to execute a shell script"
+
+inputs:
+  COMMIT_SHA:
+    required: true
+
 runs:
   using: "composite"
   steps:
   - name: Run script
     run: bash -e ./.github/actions/deploy/script.sh
     shell: bash
+    env:
+      COMMIT_SHA: ${{ inputs.COMMIT_SHA }}
