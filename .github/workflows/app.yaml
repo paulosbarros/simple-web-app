@@ -18,7 +18,7 @@ jobs:
         uses: ./.github/actions/quality
         with:
           SONARQUBE_URL: ${{ vars.SONARQUBE_URL }}
-          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+          SONARQUBE_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
           PROJECT_KEY: ${{ github.repository }}
       - name: Publish artifacts
         uses: ./.github/actions/publish
