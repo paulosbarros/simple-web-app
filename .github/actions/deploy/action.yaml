@@ -4,7 +4,7 @@ description: "An action to execute a shell script"
 inputs:
   COMMIT_SHA:
     required: true
-  GITHUB_REPOSITORY:
+  APP_NAME:
     required: true
 
 runs:
@@ -15,4 +15,4 @@ runs:
     shell: bash
     env:
       COMMIT_SHA: ${{ inputs.COMMIT_SHA }}
-      GITHUB_REPOSITORY: ${{ inputs.GITHUB_REPOSITORY }}
+      APP_NAME: ${{ inputs.APP_NAME }}
