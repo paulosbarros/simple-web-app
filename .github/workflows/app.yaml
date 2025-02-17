@@ -19,7 +19,7 @@ jobs:
         with:
           SONARQUBE_URL: ${{ vars.SONARQUBE_URL }}
           SONARQUBE_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-          PROJECT_KEY: ${{ github.repository }}
+          PROJECT_KEY: ${{ github.event.repository.name }}
       - name: Publish artifacts
         uses: ./.github/actions/publish
   deploy:
