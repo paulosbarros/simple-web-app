@@ -17,7 +17,7 @@ jobs:
       - name: Quality Assurance
         uses: ./.github/actions/quality
         with:
-          SONARQUBE_URL: ${{ env.SONARQUBE_URL }}
+          SONARQUBE_URL: ${{ vars.SONARQUBE_URL }}
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
           PROJECT_KEY: ${{ github.repository }}
       - name: Publish artifacts
