@@ -4,7 +4,7 @@
 
 #REQUIRES:
 #   COMMIT_SHA
-export COMMIT_SHA=$COMMIT_SHA
+export IMAGE_VERSION=$COMMIT_SHA
 
 echo "Deploying"
 

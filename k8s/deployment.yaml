@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: simple-web-app
-        image: paulosb/simple-web-app:${IMAGE_VERSION}
+        image: paulosb/simple-web-app:${{ IMAGE_VERSION }}
         ports:
         - containerPort: 8080
