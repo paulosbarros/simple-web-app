@@ -13,6 +13,6 @@ runs:
   - name: Run script
     run: bash -e ./.github/actions/build/script.sh
     shell: bash
-    with:
+    env:
       APP_NAME: ${{ inputs.APP_NAME }}      
       COMMIT_SHA: ${{ inputs.COMMIT_SHA }}
