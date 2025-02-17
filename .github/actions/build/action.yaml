@@ -1,8 +1,18 @@
 name: Build Script Action
 description: "An action to execute a shell script"
+
+inputs:
+  APP_NAME:
+    required: true
+  COMMIT_SHA:
+    required: true
+
 runs:
   using: "composite"
   steps:
   - name: Run script
     run: bash -e ./.github/actions/build/script.sh
     shell: bash
+    with:
+      APP_NAME: ${{ inputs.APP_NAME }}      
+      COMMIT_SHA: ${{ inputs.COMMIT_SHA }}
