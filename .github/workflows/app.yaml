@@ -25,6 +25,9 @@ jobs:
         PROJECT_KEY: ${{ github.event.repository.name }}
     - name: Publish artifacts
       uses: ./.github/actions/publish
+      with:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   deploy:
     runs-on: self-hosted
     needs: pre-deploy
