@@ -15,4 +15,4 @@ pip install pysonar-scanner
 export PATH=~/.local/bin:$PATH
 
 echo "Scanning"
-pysonar-scanner -Dsonar.token=$SONARQUBE_TOKEN -DprojectKey=$PROJECT_KEY
+pysonar-scanner -Dsonar.token=$SONARQUBE_TOKEN -Dsonar.projectKey=$PROJECT_KEY
